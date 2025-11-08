@@ -1,0 +1,17 @@
+services:
+  pansou-bot:
+    image: dannis1514/pansou-bot:1.0-amd64 #arm请更换为arm64v8
+    container_name: pansou-telegram-bot
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs #目录持久化
+    env_file:
+      - .env
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - pansou-network
+
+networks:
+  pansou-network:
+    driver: bridge
