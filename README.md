@@ -31,23 +31,21 @@
 3. 本地安装 Docker 和 Docker Compose
 
 ## 部署步骤
-### 1. 创建项目目录
+### 1. 创建项目目录及文件
 
 ```bash
-mkdir -p /opt/pansou-bot && cd /opt/pansou-bot
+mkdir -p /opt/pansou-bot/logs && touch /opt/pansou-bot/.env && touch /opt/pansou-bot/docker-compose.yml
 ```
 
 ### 2. 配置环境变量（.env 文件）
-创建 .env 文件，填入以下内容（替换为你的实际信息）：
+打开 .env 文件，填入以下内容（替换为你的实际信息）：
 ```bash
 BOT_TOKEN=你的Telegram机器人Token  
-SEARCH_API_URL=https://你的盘搜地址/api/search  
+SEARCH_API_URL=https://your_pansou_address/api/search  
 PANSOU_USERNAME=账户名  
 PANSOU_PASSWORD=密码
 ```
 ### 3. 编写 docker-compose.yml
-使用 Docker Compose 快速部署：
-
 ```yaml
 services:
   pansou-bot:
