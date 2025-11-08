@@ -72,3 +72,22 @@ networks:
 ```bash
 docker compose up -d
 ```
+
+
+
+## 💝 特别感谢
+
+<p align="center">
+  <br>
+  <strong>感谢以下开源项目</strong>
+  <br><br>
+  
+  <a href="https://github.com/fish2018/pansou">
+    <img src="https://img.shields.io/badge/🔗_pansou-原项目-8A2BE2" alt="原项目">
+  </a>
+  <a href="https://github.com/fish2018">
+    <img src="https://img.shields.io/badge/👤_fish2018-作者-00BFFF" alt="作者">
+  </a>
+</p>
+
+> 本项目基于 [fish2018/pansou](https://github.com/fish2018/pansou) ，在此向原作者表示诚挚的感谢！
