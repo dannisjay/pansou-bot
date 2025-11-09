@@ -49,7 +49,7 @@ PANSOU_PASSWORD=密码
 ```yaml
 services:
   pansou-bot:
-    image: dannis1514/pansou-bot:1.0-amd64 #arm请更换为arm64v8
+    image: dannis1514/pansou-bot:2.1-amd64 #arm请更换为arm64
     container_name: pansou-telegram-bot
     restart: unless-stopped
     volumes:
