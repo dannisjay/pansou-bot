@@ -41,7 +41,7 @@ mkdir -p /opt/pansou-bot/logs && touch /opt/pansou-bot/.env && touch /opt/pansou
 打开 .env 文件，填入以下内容（替换为你的实际信息）：
 ```bash
 BOT_TOKEN=你的Telegram机器人Token  
-SEARCH_API_URL=https://your_pansou_address/api/search  
+SEARCH_API_URL=http://ip:端口/api/search  #反代请用域名
 PANSOU_USERNAME=账户名  
 PANSOU_PASSWORD=密码
 ```
