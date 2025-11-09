@@ -49,7 +49,7 @@ PANSOU_PASSWORD=密码
 ```yaml
 services:
   pansou-bot:
-    image: dannis1514/pansou-bot:2.1-amd64 #arm请更换为arm64
+    image: dannis1514/pansou-bot:latest
     container_name: pansou-telegram-bot
     restart: unless-stopped
     volumes:
@@ -57,6 +57,9 @@ services:
     env_file:
       - .env
     environment:
+    # 可选：设备访问受限可添加代理
+    # - HTTP_PROXY=http://proxy_ip:port
+    # - HTTPS_PROXY=https://proxy_ip:port
       - TZ=Asia/Shanghai
     networks:
       - pansou-network
