@@ -23,7 +23,7 @@ services:
       - AUTH_ENABLED=true
       - AUTH_USERS=admin:admin123,user:pass456 # 账号1:密码1，账号2:密码2
       - AUTH_TOKEN_EXPIRY=24
-      - AUTH_JWT_SECRET=your-secret-key-here
+      - AUTH_JWT_SECRET=your-secret-key-here  # SSH输入"openssl rand -base64 32"生成
       # 如果需要代理，取消下面的注释并设置代理地址
       # - PROXY=socks5://proxy:7897
     volumes:
