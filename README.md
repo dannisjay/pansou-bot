@@ -40,10 +40,17 @@ mkdir -p /opt/pansou-bot/logs && touch /opt/pansou-bot/.env && touch /opt/pansou
 ### 2. 配置环境变量（.env 文件）
 打开 .env 文件，填入以下内容（替换为你的实际信息）：
 ```bash
+# Telegram Bot配置
 BOT_TOKEN=你的Telegram机器人Token  
+
+# 盘搜API配置
 SEARCH_API_URL=http://ip:端口/api/search  #反代请用域名
 PANSOU_USERNAME=账户名  
 PANSOU_PASSWORD=密码
+
+# TG ID白名单（用逗号分隔，不要有空格），留空则所有人都可访问
+ALLOWED_USERS=
+
 ```
 ### 3. 编写 docker-compose.yml
 ```yaml
