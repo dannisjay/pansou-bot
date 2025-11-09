@@ -1,6 +1,6 @@
 # Pansou Telegram Bot 🤖
 
-基于 Pansou API 搭建的 Telegram 盘搜机器人，支持多网盘资源搜索和磁力链接查找。
+基于 Pansou API 搭建的 Telegram 机器人，支持多网盘资源搜索和磁力链接查找。
 
 ![Docker](https://img.shields.io/badge/Docker-支持-2496ED?logo=docker)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)
