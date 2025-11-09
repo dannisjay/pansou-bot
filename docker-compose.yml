@@ -1,13 +1,16 @@
 services:
   pansou-bot:
-    image: dannis1514/pansou-bot:1.0-amd64 #arm请更换为arm64v8
-    container_name: pansou-telegram-bot
+    image: dannis1514/pansou-bot:latest
+    container_name: pansou-bot
     restart: unless-stopped
     volumes:
       - ./logs:/app/logs #目录持久化
     env_file:
       - .env
     environment:
+    # 可选：设备访问受限可添加代理
+    # - HTTP_PROXY=http://proxy_ip:port
+    # - HTTPS_PROXY=https://proxy_ip:port
       - TZ=Asia/Shanghai
     networks:
       - pansou-network
