@@ -4,13 +4,11 @@ services:
     container_name: pansou-bot
     restart: unless-stopped
     volumes:
-      - ./logs:/app/logs #目录持久化
+      - ./logs:/app/logs
+      - ./data:/app/data
     env_file:
       - .env
     environment:
-    # 可选：设备访问受限可添加代理
-    # - HTTP_PROXY=http://proxy_ip:port
-    # - HTTPS_PROXY=https://proxy_ip:port
       - TZ=Asia/Shanghai
     networks:
       - pansou-network
