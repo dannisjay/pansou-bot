@@ -10,12 +10,13 @@
 
 ## ✨ 特性
 
-- 🔍 **多网盘搜索** - 115网盘、阿里云盘、百度云盘、迅雷云盘、夸克网盘、Pikpak、天翼云盘
+- 🔍 **网盘搜索** - 115网盘、阿里云盘、百度云盘、迅雷云盘、夸克网盘、Pikpak、天翼云盘
 - 🧲 **磁力链接** - 直接获取磁力链接和迅雷链接
 - 🤖 **智能交互** - 完整的Telegram Bot交互界面，支持按钮和快速搜索
-- 🐳 **容器化部署** - Docker Compose部署，支持AMD64, ARM64架构
+- 🐳 **容器部署** - Docker Compose部署，支持AMD64, ARM64架构
 - ⚡ **快速响应** - 异步处理，搜索结果快速返回
 - 📱 **用户友好** - 直观的按钮交互和分页浏览
+- 🗂️ **115集成** - 配置115账号，支持快速转存和离线下载
 
 ## 🚀 快速开始
 
@@ -31,42 +32,51 @@
 3. 本地安装 Docker 和 Docker Compose
 
 ## 部署步骤
-### 1. 创建项目目录及文件
+### 1. 创建项目目录
 
 ```bash
-mkdir -p /opt/pansou-bot/logs && touch /opt/pansou-bot/.env && touch /opt/pansou-bot/docker-compose.yml
+cd /opt/pansou-bot && mkdir -p logs data && touch .env docker-compose.yml
+```
+```bash
+sudo chmod 777 /opt/pansou-bot/logs /opt/pansou-bot/data
 ```
 
 ### 2. 配置环境变量（.env 文件）
-打开 .env 文件，填入以下内容（替换为你的实际信息）：
+在已创建的.env 文件，填入以下内容（替换为你的实际信息）：
 ```bash
 # Telegram Bot配置
-BOT_TOKEN=你的Telegram机器人Token  
+BOT_TOKEN=你的Telegram机器人Token
+ALLOWED_USERS=TG_ID
 
 # 盘搜API配置
-SEARCH_API_URL=http://ip:端口/api/search  #反代请用域名
-PANSOU_USERNAME=账户名  
+SEARCH_API_URL=http://ip:端口/api/search
+PANSOU_USERNAME=账号
 PANSOU_PASSWORD=密码
 
-# TG ID白名单（用逗号分隔，不要有空格），留空则所有人都可访问
-ALLOWED_USERS=
+# Nullbr配置(留空则不启用)
+NULLBR_APP_ID=
+NULLBR_API_KEY=
+NULLBR_BASE_URL=https://api.nullbr.eu.org
+
+# 代理配置（可选，如果网络访问受限时使用）
+# HTTP_PROXY=http://proxy_ip:port
+# HTTPS_PROXY=https://proxy_ip:port
 
 ```
 ### 3. 编写 docker-compose.yml
+
 ```yaml
 services:
   pansou-bot:
     image: dannis1514/pansou-bot:latest
-    container_name: pansou-telegram-bot
+    container_name: pansou-bot
     restart: unless-stopped
     volumes:
-      - ./logs:/app/logs #目录持久化
+      - ./logs:/app/logs
+      - ./data:/app/data
     env_file:
       - .env
     environment:
-    # 可选：设备访问受限可添加代理
-    # - HTTP_PROXY=http://proxy_ip:port
-    # - HTTPS_PROXY=https://proxy_ip:port
       - TZ=Asia/Shanghai
     networks:
       - pansou-network
