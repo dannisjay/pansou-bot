@@ -27,9 +27,10 @@
 - Pansou API 账号
 
 ## 前置准备
-1. 申请 Telegram 机器人 Token（通过 @BotFather 获取）
-2. 确保 pansou 账号（用户名/密码）可正常访问搜索 API
-3. 本地安装 Docker 和 Docker Compose
+1. **申请 Telegram 机器人 Token**（通过 @BotFather 获取）
+2. **获取用户 ID**（通过 @VersaToolsBot 获取）
+3. **确保 pansou 账号**（用户名/密码）可正常访问搜索 API
+4. **本地安装** Docker 和 Docker Compose
 
 ## 部署步骤
 ### 1. 创建项目目录
