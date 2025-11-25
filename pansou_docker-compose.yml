@@ -1,55 +1,73 @@
 services:
   pansou:
-    image: ghcr.io/fish2018/pansou:latest
-    container_name: pansou
-    restart: unless-stopped
+    image: ghcr.io/fish2018/pansou-web:latest
+    container_name: pansou-app
+    labels:
+      - "autoheal=true"  # 标记此容器允许被autoheal重启
     ports:
-      - "8888:8888"
+      - "80:80"
+      - "443:443"
     environment:
-      - PORT=8888
-      - CHANNELS=tgsearchers4,Aliyun_4K_Movies,bdbdndn11,yunpanx,bsbdbfjfjff,yp123pan,sbsbsnsqq,yunpanxunlei,tianyifc,BaiduCloudDisk,txtyzy,peccxinpd,gotopan,PanjClub,kkxlzy,baicaoZY,MCPH01,MCPH02,MCPH03,bdwpzhpd,ysxb48,jdjdn1111,yggpan,MCPH086,zaihuayun,Q66Share,ucwpzy,shareAliyun,alyp_1,dianyingshare,Quark_Movies,XiangxiuNBB,ydypzyfx,ucquark,xx123pan,yingshifenxiang123,zyfb123,tyypzhpd,tianyirigeng,cloudtianyi,hdhhd21,Lsp115,oneonefivewpfx,qixingzhenren,taoxgzy,Channel_Shares_115,tyysypzypd,vip115hot,wp123zy,yunpan139,yunpan189,yunpanuc,yydf_hzl,leoziyuan,pikpakpan,Q_dongman,yoyokuakeduanju,TG654TG,WFYSFX02,QukanMovie,yeqingjie_GJG666,movielover8888_film3,Baidu_netdisk,D_wusun,FLMdongtianfudi,KaiPanshare,QQZYDAPP,rjyxfx,PikPak_Share_Channel,btzhi,newproductsourcing,cctv1211,duan_ju,QuarkFree,yunpanNB,kkdj001,xxzlzn,pxyunpanxunlei,jxwpzy,kuakedongman,liangxingzhinan,xiangnikanj,solidsexydoll,guoman4K,zdqxm,kduanju,cilidianying,CBduanju,SharePanFilms,dzsgx,BooksRealm,Oscar_4Kmovies,douerpan,baidu_yppan,Q_jilupian,Netdisk_Movies,yunpanquark,ammmziyuan,ciliziyuanku,cili8888,jzmm_123pan
-      # 必须指定启用的插件，多个插件用逗号分隔
-      - ENABLED_PLUGINS=labi,zhizhen,shandian,duoduo,muou,wanou,hunhepan,jikepan,panwiki,pansearch,panta,qupansou,hdr4k,pan666,susu,thepiratebay,xuexizhinan,panyq,ouge,huban,cyg,erxiao,miaoso,fox4k,pianku,clmao,wuji,cldi,xiaozhang,libvio,leijing,xb6v,xys,ddys,hdmoli,yuhuage,u3c3,javdb,clxiong,jutoushe,sdso,xiaoji,xdyh,haisou,bixin,djgou,nyaa,xinjuc,aikanzy,qupanshe,xdpan,discourse,yunsou,qqpd,ahhhhfs,nsgame,gying,quark4k,quarksoo,sousou,ash
-      - CACHE_ENABLED=true
-      - CACHE_PATH=/app/cache
-      - CACHE_MAX_SIZE=100
-      - CACHE_TTL=60
-      - ASYNC_PLUGIN_ENABLED=true
-      - ASYNC_RESPONSE_TIMEOUT=4
-      - ASYNC_MAX_BACKGROUND_WORKERS=20
-      - ASYNC_MAX_BACKGROUND_TASKS=100
-      - ASYNC_CACHE_TTL_HOURS=1
-      # 认证配置（可选）
+      # 基础配置
+      - DOMAIN=localhost
+      - PANSOU_PORT=8888
+      - PANSOU_HOST=127.0.0.1
+      
+      # 数据目录配置（统一在/app/data下）
+      - CACHE_PATH=/app/data/cache
+      - LOG_PATH=/app/data/logs
+      
+      # 插件配置（镜像已包含推荐插件，如需自定义可取消注释并修改）
+      - ENABLED_PLUGINS=hunhepan,jikepan,panwiki,pansearch,panta,qupansou,hdr4k,pan666,susu,thepiratebay,wanou,xuexizhinan,panyq,zhizhen,labi,muou,ouge,shandian,duoduo,huban,cyg,erxiao,miaoso,fox4k,pianku,clmao,wuji,cldi,xiaozhang,libvio,leijing,xb6v,xys,ddys,hdmoli,yuhuage,u3c3,javdb,clxiong,jutoushe,sdso,xiaoji,xdyh,haisou,bixin,djgou,nyaa,xinjuc,aikanzy,qupanshe,xdpan,discourse,yunsou,qqpd,gying,quark4k,quarksoo,sousou,ahhhhfs,nsgame,ash,feikuai
+      
+      # Telegram频道配置（镜像已包含这些默认频道，如需自定义可取消注释）
+      - CHANNELS=tgsearchers4,Aliyun_4K_Movies,bdbdndn11,yunpanx,bsbdbfjfjff,yp123pan,sbsbsnsqq,yunpanxunlei,tianyifc,BaiduCloudDisk,txtyzy,peccxinpd,gotopan,PanjClub,kkxlzy,baicaoZY,MCPH01,MCPH02,MCPH03,bdwpzhpd,ysxb48,jdjdn1111,yggpan,MCPH086,zaihuayun,Q66Share,ucwpzy,shareAliyun,alyp_1,dianyingshare,Quark_Movies,XiangxiuNBB,ydypzyfx,ucquark,xx123pan,yingshifenxiang123,zyfb123,tyypzhpd,tianyirigeng,cloudtianyi,hdhhd21,Lsp115,oneonefivewpfx,qixingzhenren,taoxgzy,Channel_Shares_115,tyysypzypd,vip115hot,wp123zy,yunpan139,yunpan189,yunpanuc,yydf_hzl,leoziyuan,Q_dongman,yoyokuakeduanju,TG654TG,WFYSFX02,QukanMovie,yeqingjie_GJG666,movielover8888_film3,Baidu_netdisk,D_wusun,FLMdongtianfudi,KaiPanshare,QQZYDAPP,rjyxfx,PikPak_Share_Channel,btzhi,newproductsourcing,cctv1211,duan_ju,QuarkFree,yunpanNB,kkdj001,xxzlzn,pxyunpanxunlei,jxwpzy,kuakedongman,liangxingzhinan,xiangnikanj,solidsexydoll,guoman4K,zdqxm,kduanju,cilidianying,CBduanju,SharePanFilms,dzsgx,BooksRealm,Oscar_4Kmovies,douerpan,baidu_yppan,Q_jilupian,Netdisk_Movies,yunpanquark,ammmziyuan,ciliziyuanku,cili8888,jzmm_123pan,Q_dianying,domgmingapk,dianying4k,q_dianshiju,tgbokee,ucshare,godupan,gokuapan
+      
+      # 代理配置（可选）
+      # - PROXY=socks5://xxx.xxx.xxx.xxx:7897
+      
+      # 性能配置（镜像已包含默认值，如需调整可取消注释）
+      # - CACHE_ENABLED=true
+      # - CACHE_TTL=60
+      # - MAX_CONCURRENCY=200
+      # - MAX_PAGES=30
+      
+      # 健康检查配置（容器内部监控）
+      - HEALTH_CHECK_INTERVAL=30  # 后端服务健康检查间隔（秒）
+      - HEALTH_CHECK_TIMEOUT=10   # 健康检查超时时间（秒）
+      - HEALTH_CHECK_RETRIES=3    # 失败重试次数
+      
+      # 认证配置（可选，默认不启用）
       - AUTH_ENABLED=true
-      - AUTH_USERS=admin:admin123,user:pass456 # 账号1:密码1，账号2:密码2
+      - AUTH_USERS=账号:密码
       - AUTH_TOKEN_EXPIRY=24
-      - AUTH_JWT_SECRET=your-secret-key-here  # SSH输入"openssl rand -base64 32"生成
-      # 如果需要代理，取消下面的注释并设置代理地址
-      # - PROXY=socks5://proxy:7897
+      - AUTH_JWT_SECRET=5DZ0Xe2e1tShVLyT/jV38skpL7DN+Ho8tPZpmhTU/Vg=
     volumes:
-      - pansou-cache:/app/cache
-    networks:
-      - pansou-network
+      # 数据持久化（统一挂载/app/data，包含缓存、日志、SSL证书等所有数据）
+      - pansou-data:/app/data
+      # 如果需要从宿主机挂载SSL证书，可以使用：
+      # - ./ssl:/app/data/ssl
+    restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8888/api/health"]
+      test: ["CMD", "/app/healthcheck.sh"]
       interval: 30s
-      timeout: 5s
+      timeout: 10s
       retries: 3
-      start_period: 10s
+      start_period: 40s
 
-  # 如果需要代理，取消下面的注释
-  # proxy:
-  #   image: ghcr.io/snail007/goproxy:latest
-  #   container_name: pansou-proxy
-  #   restart: unless-stopped
-  #   command: /proxy socks -p :7897
-  #   networks:
-  #     - pansou-network
+  # 自动健康检查和重启服务（容器级别监控）
+  autoheal:
+    image: willfarrell/autoheal:latest
+    container_name: pansou-autoheal
+    restart: always
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal  # 只监控带有autoheal标签的容器
+      - AUTOHEAL_INTERVAL=30  # 每30秒检查一次容器健康状态
+      - AUTOHEAL_START_PERIOD=60  # 启动后60秒开始检查
+      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10  # 停止容器的超时时间
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
-  pansou-cache:
-    name: pansou-cache
-
-networks:
-  pansou-network:
-    name: pansou-network 
+  pansou-data:
+    driver: local
