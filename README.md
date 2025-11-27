@@ -71,8 +71,8 @@ services:
     container_name: pansou-bot
     restart: unless-stopped
     volumes:
-      - ./logs:/app/logs
-      - ./data:/app/data
+      - ./logs:/app/logs   #启动后自动创建
+      - ./data:/app/data   #启动后自动创建
     env_file:
       - .env
     environment:
