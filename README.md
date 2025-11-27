@@ -15,8 +15,7 @@
 - 🐳 **容器部署** - Docker Compose部署，支持AMD64, ARM64架构
 - ⚡ **快速响应** - 异步处理，搜索结果快速返回
 - 📱 **用户友好** - 直观的按钮交互和分页浏览
-  
-**新增功能**
+
 - 🗂️ **115** - 配置115账号，支持快速转存和离线下载
 - 🔗 **Nullbr** - 支持Nullbr搜索源，丰富搜索结果
 
@@ -38,10 +37,7 @@
 ### 1. 创建项目目录
 
 ```bash
-cd /opt/pansou-bot && mkdir -p logs data && touch .env docker-compose.yml
-```
-```bash
-sudo chmod 777 /opt/pansou-bot/logs /opt/pansou-bot/data
+sudo cd /opt/pansou-bot && touch .env docker-compose.yml
 ```
 
 ### 2. 配置环境变量（.env 文件）
@@ -81,6 +77,9 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
+      - HOST_UID=${UID}
+      - HOST_GID=${GID}
+    user: "${UID}:${GID}"
     networks:
       - pansou-network
 
