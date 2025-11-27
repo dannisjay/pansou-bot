@@ -10,6 +10,9 @@ services:
       - .env
     environment:
       - TZ=Asia/Shanghai
+      - HOST_UID=${UID}
+      - HOST_GID=${GID}
+    user: "${UID}:${GID}"
     networks:
       - pansou-network
 
