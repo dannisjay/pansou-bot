@@ -5,7 +5,7 @@
 ![Docker](https://img.shields.io/badge/Docker-支持-2496ED?logo=docker)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)
 ![架构](https://img.shields.io/badge/架构-ARM64%2FAMD64-0091BD)
-![版本](https://img.shields.io/badge/版本-1.0-brightgreen)
+![版本](https://img.shields.io/badge/版本-3.1.2-brightgreen)
 ![许可证](https://img.shields.io/badge/LICENSE-MIT-green)
 
 ## ✨ 特性
