@@ -37,7 +37,7 @@
 ### 1. 创建项目目录
 
 ```bash
-sudo cd /opt/pansou-bot && touch .env docker-compose.yml
+sudo mkdir -p /opt/pansou-bot && cd /opt/pansou-bot && sudo touch .env docker-compose.yml
 ```
 
 ### 2. 配置环境变量（.env 文件）
