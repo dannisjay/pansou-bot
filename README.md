@@ -47,7 +47,7 @@ sudo mkdir -p /opt/pansou-bot && cd /opt/pansou-bot && sudo touch .env docker-co
 BOT_TOKEN=你的Telegram机器人Token
 ALLOWED_USERS=TG_ID
 
-# 盘搜API配置
+# 盘搜API配置(没设置用户账密就留空)
 SEARCH_API_URL=http://ip:端口/api/search
 PANSOU_USERNAME=账号
 PANSOU_PASSWORD=密码
